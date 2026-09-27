@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINKS • Bộ sưu tập</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --pink:#ff2d95;
+  --pink-soft:#ff7ac6;
+  --pink-deep:#b3005e;
+  --border:rgba(255,45,149,.22);
+}
+
+html,body{height:100%}
+
+body{
+  font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  background:#05000a;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+  padding-bottom:140px;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NỀN ===== */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(255,45,149,.35), transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 100%, rgba(255,110,199,.22), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(150,0,90,.20), transparent 60%);
+  z-index:-3;
+  animation:breathe 12s ease-in-out infinite alternate;
+}
+@keyframes breathe{from{transform:scale(1);opacity:.85}to{transform:scale(1.12);opacity:1}}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,45,149,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,45,149,.05) 1px, transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 15%, transparent 72%);
+  mask-image:radial-gradient(ellipse at center, #000 15%, transparent 72%);
+  z-index:-2;pointer-events:none;
+}
+
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.45;z-index:-1;pointer-events:none;animation:float 14s ease-in-out infinite}
+.orb1{width:340px;height:340px;background:#ff2d95;top:-90px;left:-90px}
+.orb2{width:280px;height:280px;background:#ff7ac6;bottom:-80px;right:-70px;animation-delay:-6s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.15)}}
+
+/* ===== HEADER ===== */
+header{text-align:center;padding:86px 20px 44px;position:relative}
+h1{
+  font-size:clamp(2.3rem,8vw,4.4rem);font-weight:700;letter-spacing:-.035em;line-height:1;
+  background:linear-gradient(115deg,#fff 8%,var(--pink-soft) 42%,var(--pink) 58%,#fff 92%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 6s linear infinite;
+  filter:drop-shadow(0 0 32px rgba(255,45,149,.55));
+}
+@keyframes shine{to{background-position:220% center}}
+.sub{margin-top:16px;font-size:.82rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,150,210,.65);font-weight:500}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));
+  gap:18px;max-width:1120px;margin:0 auto;padding:0 22px 60px;
+}
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:rgba(255,150,210,.45);font-size:.9rem;letter-spacing:.1em}
+
+/* ===== CARD ===== */
+.link-card{
+  position:relative;border-radius:22px;padding:26px 16px 22px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  cursor:pointer;overflow:hidden;
+  background:linear-gradient(150deg,rgba(255,45,149,.11),rgba(255,255,255,.025) 45%,rgba(255,45,149,.07));
+  border:1px solid var(--border);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  transition:transform .38s cubic-bezier(.2,.8,.3,1),border-color .38s,box-shadow .38s;
+  box-shadow:0 8px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.07);
+  animation:cardIn .55s both cubic-bezier(.2,.8,.3,1);
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+.link-card::before{
+  content:'';position:absolute;top:-60%;left:-160%;width:70%;height:220%;
+  background:linear-gradient(100deg,transparent 15%,rgba(255,255,255,.16) 50%,transparent 85%);
+  transform:skewX(-22deg);animation:shimmer 5.5s ease-in-out infinite;pointer-events:none;
+}
+.link-card:nth-child(2n)::before{animation-delay:-1.8s}
+.link-card:nth-child(3n)::before{animation-delay:-3.4s}
+@keyframes shimmer{0%{left:-160%}55%,100%{left:160%}}
+
+.link-card:hover{
+  transform:translateY(-7px) scale(1.025);
+  border-color:rgba(255,45,149,.65);
+  box-shadow:0 18px 50px rgba(255,45,149,.32),0 0 0 1px rgba(255,45,149,.22),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.link-card:active{transform:translateY(-3px) scale(.99)}
+
+.avatar{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  font-weight:700;font-size:1.35rem;color:#fff;overflow:hidden;flex-shrink:0;
+  position:relative;z-index:1;border:2px solid rgba(255,45,149,.55);
+  box-shadow:0 0 24px rgba(255,45,149,.45), inset 0 0 14px rgba(255,255,255,.12);
+  transition:box-shadow .38s,transform .38s;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.link-card:hover .avatar{box-shadow:0 0 34px rgba(255,45,149,.75), inset 0 0 14px rgba(255,255,255,.18);transform:scale(1.06)}
+
+.link-name{
+  font-weight:600;font-size:.94rem;line-height:1.35;text-align:center;
+  color:#ffe9f6;letter-spacing:.012em;position:relative;z-index:1;
+  word-break:break-word;text-shadow:0 0 20px rgba(255,45,149,.35);
+}
+
+.card-tools{position:absolute;top:8px;right:8px;display:flex;gap:5px;z-index:5;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s}
+.link-card:hover .card-tools{opacity:1;transform:translateY(0)}
+.icon-btn{
+  width:26px;height:26px;border-radius:8px;border:1px solid rgba(255,45,149,.35);
+  background:rgba(15,0,10,.85);color:var(--pink-soft);font-size:12px;line-height:1;
+  cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px);transition:.2s;font-family:inherit;
+}
+.icon-btn:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+.icon-btn.danger:hover{background:#ff2d5e;border-color:#ff2d5e}
+
+/* ===== Ô NHẬP MÃ SIÊU NHỎ (góc dưới phải) ===== */
+.code-box{position:fixed;bottom:16px;right:16px;z-index:70;text-align:right}
+.code-box .hint{
+  display:block;font-size:8px;letter-spacing:.3em;color:rgba(255,120,200,.35);
+  margin-bottom:4px;text-transform:uppercase;
+}
+.code-box input{
+  width:74px;padding:7px 6px;font-family:'Space Grotesk',monospace;font-size:10px;
+  letter-spacing:3px;text-align:center;color:#ff9ad4;
+  background:rgba(255,45,149,.06);border:1px solid rgba(255,45,149,.16);
+  border-radius:9px;outline:none;opacity:.3;
+  backdrop-filter:blur(10px);
+  transition:opacity .3s,width .3s,border-color .3s,box-shadow .3s;
+}
+.code-box input::placeholder{color:rgba(255,120,200,.35);letter-spacing:1px;font-size:9px}
+.code-box input:hover{opacity:.75}
+.code-box input:focus{opacity:1;width:96px;border-color:var(--pink);box-shadow:0 0 20px rgba(255,45,149,.55)}
+
+/* ===== THANH ADMIN (trên cùng) ===== */
+.admin-bar{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:9px;padding:8px 10px 8px 18px;
+  border-radius:999px;background:rgba(20,0,13,.94);
+  border:1px solid rgba(255,45,149,.45);
+  backdrop-filter:blur(22px);
+  box-shadow:0 12px 45px rgba(255,45,149,.5);
+  z-index:90;font-size:11px;letter-spacing:.22em;color:var(--pink-soft);
+  animation:popIn .4s cubic-bezier(.2,.9,.3,1.3);
+  white-space:nowrap;
+}
+.admin-bar[hidden]{display:none}
+.admin-bar .dot{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.admin-bar button{
+  font-family:inherit;font-size:11px;letter-spacing:.06em;padding:7px 14px;
+  border-radius:999px;border:1px solid rgba(255,45,149,.35);
+  background:rgba(255,45,149,.1);color:#ffd6ee;cursor:pointer;transition:.22s;
+}
+.admin-bar button:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+.admin-bar button.ghost{background:transparent;color:rgba(255,150,210,.7)}
+.admin-bar button.ghost:hover{background:rgba(255,45,149,.2);color:#fff}
+.admin-bar .add{background:linear-gradient(120deg,var(--pink),#ff5fb0);color:#fff;border-color:transparent;font-weight:600}
+
+/* ===== MODAL ===== */
+.modal{
+  position:fixed;inset:0;background:rgba(5,0,10,.82);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:grid;place-items:center;z-index:100;padding:20px;
+  animation:fadeIn .25s ease;
+}
+.modal[hidden]{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.panel{
+  width:100%;max-width:430px;max-height:88vh;overflow-y:auto;
+  background:linear-gradient(160deg,rgba(255,45,149,.14),rgba(12,0,9,.96));
+  border:1px solid var(--border);border-radius:26px;padding:30px 26px 26px;
+  box-shadow:0 30px 80px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.08);
+  animation:popIn .38s cubic-bezier(.2,.9,.3,1.2);position:relative;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.panel h2{
+  font-size:1.3rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px;
+  background:linear-gradient(110deg,#fff,var(--pink-soft));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.panel .sub2{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,150,210,.55);margin-bottom:22px}
+
+.field{margin-bottom:16px}
+.field label{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,150,210,.85);margin-bottom:7px;font-weight:600;
+}
+.field label .num{color:var(--pink);margin-right:6px;font-size:.9rem}
+.field input{
+  width:100%;padding:13px 15px;font-family:inherit;font-size:.92rem;color:#fff;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,45,149,.25);
+  border-radius:13px;outline:none;transition:.25s;
+}
+.field input::placeholder{color:rgba(255,255,255,.25)}
+.field input:focus{border-color:var(--pink);background:rgba(255,45,149,.1);box-shadow:0 0 0 3px rgba(255,45,149,.16)}
+
+.preview-row{
+  display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;
+  background:rgba(255,255,255,.03);border:1px dashed rgba(255,45,149,.25);margin-bottom:20px;
+}
+.preview-row .avatar{width:52px;height:52px;font-size:1.1rem}
+.preview-row .pname{font-size:.9rem;font-weight:600;color:#ffe9f6;word-break:break-word}
+
+.actions{display:flex;gap:10px;margin-top:6px}
+.actions button{
+  flex:1;padding:14px;font-family:inherit;font-size:.85rem;font-weight:600;
+  letter-spacing:.08em;border-radius:14px;cursor:pointer;border:1px solid transparent;transition:.25s;
+}
+.btn-primary{background:linear-gradient(120deg,var(--pink),#ff5fb0);color:#fff;box-shadow:0 8px 26px rgba(255,45,149,.42)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(255,45,149,.6)}
+.btn-ghost{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.12)!important}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+.close-x{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:10px;
+  border:1px solid rgba(255,45,149,.25);background:rgba(0,0,0,.35);color:var(--pink-soft);
+  cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.22s;font-family:inherit;
+}
+.close-x:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+.note{
+  font-size:.72rem;line-height:1.6;color:rgba(255,150,210,.7);
+  background:rgba(255,45,149,.08);border-left:2px solid var(--pink);
+  padding:11px 13px;border-radius:0 10px 10px 0;margin-bottom:16px;
+}
+.note b{color:var(--pink-soft)}
+
+#exportArea{
+  width:100%;height:190px;padding:14px;font-family:'SF Mono',Menlo,Consolas,monospace;
+  font-size:11.5px;line-height:1.55;color:#ffb8e0;background:rgba(0,0,0,.55);
+  border:1px solid rgba(255,45,149,.25);border-radius:14px;outline:none;resize:vertical;margin-bottom:16px;
+}
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed;top:78px;left:50%;transform:translate(-50%,-24px);
+  padding:12px 24px;border-radius:999px;background:rgba(20,0,13,.94);
+  border:1px solid var(--border);backdrop-filter:blur(18px);color:#ffd6ee;
+  font-size:.82rem;font-weight:500;letter-spacing:.05em;
+  box-shadow:0 12px 40px rgba(255,45,149,.4);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;z-index:200;white-space:nowrap;max-width:90vw;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#0a0008}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--pink),var(--pink-deep));border-radius:9px}
+::selection{background:var(--pink);color:#fff}
+
+@media(max-width:520px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:13px;padding:0 15px 60px}
+  header{padding:76px 16px 34px}
+  .link-card{padding:22px 12px 18px;border-radius:19px}
+  .avatar{width:56px;height:56px;font-size:1.15rem}
+  .link-name{font-size:.85rem}
+  .admin-bar{font-size:10px;padding:7px 8px 7px 14px;letter-spacing:.12em;gap:6px;top:12px}
+  .admin-bar button{padding:6px 10px;font-size:10px}
+  .toast{top:70px;font-size:.76rem;padding:10px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<header>
+  <h1>MY LINKS</h1>
+  <p class="sub">Bộ sưu tập liên kết</p>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- Thanh ADMIN (chỉ hiện khi đã mở khoá) — đặt TRÊN CÙNG, không đè ô mã -->
+<div class="admin-bar" id="adminBar" hidden>
+  <span class="dot"></span>
+  <span>ADMIN</span>
+  <button class="add" id="addBtn">+ Thêm link</button>
+  <button id="exportBtn">Export</button>
+  <button class="ghost" id="exitBtn">Thoát</button>
+</div>
+
+<!-- Ô nhập mã siêu nhỏ -->
+<div class="code-box">
+  <span class="hint">code</span>
+  <input id="codeInput" type="password" maxlength="6" placeholder="••••"
+         autocomplete="off" inputmode="numeric" spellcheck="false">
+</div>
+
+<!-- MODAL THÊM / SỬA LINK -->
+<div class="modal" id="modal" hidden>
+  <div class="panel">
+    <button class="close-x" id="closeModal" type="button">✕</button>
+    <h2 id="modalTitle">Thêm link mới</h2>
+    <p class="sub2">Điền 2 ô bên dưới rồi bấm Lưu</p>
+
+    <div class="preview-row">
+      <div class="avatar" id="previewAvatar">?</div>
+      <div class="pname" id="previewName">Tên link</div>
+    </div>
+
+    <!-- ① TÊN LINK -->
+    <div class="field">
+      <label><span class="num">①</span>Tên hiển thị (ai cũng thấy)</label>
+      <input id="fName" type="text" placeholder="Ví dụ: YouTube" maxlength="40" autocomplete="off">
+    </div>
+
+    <!-- ② LINK / URL -->
+    <div class="field">
+      <label><span class="num">②</span>Link / URL (sẽ được ẩn)</label>
+      <input id="fUrl" type="text" placeholder="https://..." spellcheck="false" autocomplete="off">
+    </div>
+
+    <!-- AVATAR (tuỳ chọn) -->
+    <div class="field">
+      <label>③ Avatar — link ảnh (không bắt buộc)</label>
+      <input id="fAvatar" type="text" placeholder="https://...jpg" spellcheck="false" autocomplete="off">
+    </div>
+
+    <div class="actions">
+      <button class="btn-ghost" id="cancelBtn" type="button">Huỷ</button>
+      <button class="btn-primary" id="saveBtn" type="button">💾 Lưu link</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EXPORT -->
+<div class="modal" id="exportModal" hidden>
+  <div class="panel">
+    <button class="close-x" id="closeExport" type="button">✕</button>
+    <h2>Xuất dữ liệu</h2>
+    <p class="sub2">Đưa link lên cho mọi người thấy</p>
+
+    <div class="note">
+      Link bạn thêm chỉ lưu <b>trên máy này</b>. Để <b>mọi người</b> thấy,
+      copy JSON dưới đây → dán vào biến <b>DEFAULT_LINKS</b> trong file
+      <b>index.html</b> → push lên GitHub.
+    </div>
+
+    <textarea id="exportArea" readonly spellcheck="false"></textarea>
+
+    <div class="actions">
+      <button class="btn-ghost" id="resetBtn" type="button">Về mặc định</button>
+      <button class="btn-primary" id="copyBtn" type="button">📋 Copy JSON</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   CẤU HÌNH
+   ========================================================= */
+const ADMIN_CODE  = '072019';
+const STORAGE_KEY = 'pink_links_v1';
+
+/* =========================================================
+   DỮ LIỆU MẶC ĐỊNH — MỌI NGƯỜI SẼ THẤY DANH SÁCH NÀY
+   (Sau khi thêm link, bấm EXPORT → dán vào đây → push GitHub)
+   ========================================================= */
+const DEFAULT_LINKS = [
+  { id: 'd1', name: 'YouTube',  url: 'https://www.youtube.com', avatar: '' },
+  { id: 'd2', name: 'GitHub',   url: 'https://github.com',      avatar: '' },
+  { id: 'd3', name: 'Facebook', url: 'https://facebook.com',    avatar: '' }
+];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let links     = loadLinks();
+let isAdmin   = false;
+let editingId = null;
+
+const HUES = [320, 335, 300, 350, 285, 355, 310];
+
+function loadLinks() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length) return parsed;
+    }
+  } catch (e) {}
+  return JSON.parse(JSON.stringify(DEFAULT_LINKS));
+}
+function saveLinks() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(links)); } catch (e) {}
+}
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function initials(name) {
+  const parts = String(name).trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return '?';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+function gradientFor(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  const hue = HUES[h % HUES.length];
+  return `linear-gradient(135deg, hsl(${hue} 92% 58%), hsl(${(hue + 28) % 360} 88% 42%))`;
+}
+function uid() { return 'l' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* =========================================================
+   RENDER (URL không bao giờ lọt vào DOM)
+   ========================================================= */
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  if (!links.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = isAdmin ? '✦ Chưa có link — bấm "+ Thêm link" ở trên' : '✦ Chưa có liên kết nào';
+    grid.appendChild(empty);
+    return;
+  }
+
+  links.forEach((link, index) => {
+    const card = document.createElement('article');
+    card.className = 'link-card';
+    card.style.animationDelay = Math.min(index * 55, 650) + 'ms';
+
+    const av = document.createElement('div');
+    av.className = 'avatar';
+
+    const hasImg = link.avatar && /^https?:\/\//i.test(link.avatar);
+    if (hasImg) {
+      const img = document.createElement('img');
+      img.src = link.avatar; img.alt = ''; img.loading = 'lazy'; img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', () => {
+        img.remove();
+        av.textContent = initials(link.name);
+        av.style.background = gradientFor(link.name);
+      });
+      av.appendChild(img);
+    } else {
+      av.textContent = initials(link.name);
+      av.style.background = gradientFor(link.name);
+    }
+
+    const nm = document.createElement('h3');
+    nm.className = 'link-name';
+    nm.textContent = link.name;
+
+    card.append(av, nm);
+
+    if (isAdmin) {
+      const tools = document.createElement('div');
+      tools.className = 'card-tools';
+
+      const editBtn = document.createElement('button');
+      editBtn.className = 'icon-btn'; editBtn.type = 'button'; editBtn.title = 'Sửa'; editBtn.textContent = '✎';
+      editBtn.addEventListener('click', e => { e.stopPropagation(); openEditor(link.id); });
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'icon-btn danger'; delBtn.type = 'button'; delBtn.title = 'Xoá'; delBtn.textContent = '✕';
+      delBtn.addEventListener('click', e => { e.stopPropagation(); removeLink(link.id); });
+
+      tools.append(editBtn, delBtn);
+      card.appendChild(tools);
+    }
+
+    card.addEventListener('click', () => {
+      if (!link.url) return;
+      window.open(link.url, '_blank', 'noopener,noreferrer');
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+/* =========================================================
+   ADMIN
+   ========================================================= */
+function unlockAdmin() {
+  if (isAdmin) return;
+  isAdmin = true;
+  document.getElementById('adminBar').hidden = false;
+  render();
+  toast('✦ Đã mở khoá ADMIN');
+  // Tự mở form thêm link để bạn thấy ngay 2 ô nhập liệu
+  setTimeout(() => openEditor(null), 350);
+}
+
+function lockAdmin() {
+  if (!isAdmin) return;
+  isAdmin = false;
+  document.getElementById('adminBar').hidden = true;
+  closeModal();
+  closeExport();
+  render();
+  toast('Đã khoá ADMIN');
+}
+
+const codeInput = document.getElementById('codeInput');
+codeInput.addEventListener('input', () => {
+  if (codeInput.value === ADMIN_CODE) {
+    codeInput.value = '';
+    codeInput.blur();
+    unlockAdmin();
+  }
+});
+codeInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && codeInput.value === ADMIN_CODE) {
+    codeInput.value = '';
+    codeInput.blur();
+    unlockAdmin();
+  }
+});
+
+/* =========================================================
+   MODAL THÊM / SỬA
+   ========================================================= */
+const modal       = document.getElementById('modal');
+const fName       = document.getElementById('fName');
+const fUrl        = document.getElementById('fUrl');
+const fAvatar     = document.getElementById('fAvatar');
+const previewAv   = document.getElementById('previewAvatar');
+const previewName = document.getElementById('previewName');
+
+function openEditor(id) {
+  editingId = id || null;
+  const link = id ? links.find(l => l.id === id) : null;
+
+  document.getElementById('modalTitle').textContent = link ? 'Sửa link' : 'Thêm link mới';
+  fName.value   = link ? link.name   : '';
+  fUrl.value    = link ? link.url    : '';
+  fAvatar.value = link ? link.avatar : '';
+
+  updatePreview();
+  modal.hidden = false;
+  setTimeout(() => fName.focus(), 80);
+}
+
+function updatePreview() {
+  const name = fName.value.trim() || 'Tên link';
+  previewName.textContent = name;
+
+  const av = fAvatar.value.trim();
+  previewAv.innerHTML = '';
+  previewAv.style.background = '';
+
+  if (av && /^https?:\/\//i.test(av)) {
+    const img = document.createElement('img');
+    img.src = av; img.alt = '';
+    img.addEventListener('error', () => {
+      img.remove();
+      previewAv.textContent = initials(name);
+      previewAv.style.background = gradientFor(name);
+    });
+    previewAv.appendChild(img);
+  } else {
+    previewAv.textContent = initials(name);
+    previewAv.style.background = gradientFor(name);
+  }
+}
+
+fName.addEventListener('input', updatePreview);
+fAvatar.addEventListener('input', updatePreview);
+
+function closeModal() { modal.hidden = true; editingId = null; }
+
+function saveEditor() {
+  const name = fName.value.trim();
+  let url = fUrl.value.trim();
+  const avatar = fAvatar.value.trim();
+
+  if (!name) { toast('⚠ Nhập TÊN link (ô ①)'); fName.focus(); return; }
+  if (!url)  { toast('⚠ Nhập LINK / URL (ô ②)'); fUrl.focus();  return; }
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+  if (editingId) {
+    const l = links.find(x => x.id === editingId);
+    if (l) { l.name = name; l.url = url; l.avatar = avatar; }
+    toast('✦ Đã cập nhật');
+  } else {
+    links.unshift({ id: uid(), name, url, avatar });
+    toast('✦ Đã thêm — bấm Export để đưa lên GitHub');
+  }
+
+  saveLinks();
+  render();
+  closeModal();
+}
+
+function removeLink(id) {
+  const link = links.find(l => l.id === id);
+  if (!link) return;
+  if (!confirm(`Xoá "${link.name}"?`)) return;
+  links = links.filter(l => l.id !== id);
+  saveLinks();
+  render();
+  toast('Đã xoá');
+}
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+const exportModal = document.getElementById('exportModal');
+
+function openExport() {
+  document.getElementById('exportArea').value = JSON.stringify(links, null, 2);
+  exportModal.hidden = false;
+}
+function closeExport() { exportModal.hidden = true; }
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const area = document.getElementById('exportArea');
+  try {
+    await navigator.clipboard.writeText(area.value);
+    toast('✦ Đã copy JSON — dán vào DEFAULT_LINKS');
+  } catch (e) {
+    area.select(); document.execCommand('copy');
+    toast('✦ Đã copy JSON — dán vào DEFAULT_LINKS');
+  }
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (!confirm('Xoá hết thay đổi và quay về dữ liệu gốc trong file?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  links = JSON.parse(JSON.stringify(DEFAULT_LINKS));
+  render(); closeExport();
+  toast('Đã về mặc định');
+});
+
+/* =========================================================
+   SỰ KIỆN
+   ========================================================= */
+document.getElementById('addBtn').addEventListener('click', () => openEditor(null));
+document.getElementById('exportBtn').addEventListener('click', openExport);
+document.getElementById('exitBtn').addEventListener('click', lockAdmin);
+
+document.getElementById('saveBtn').addEventListener('click', saveEditor);
+document.getElementById('cancelBtn').addEventListener('click', closeModal);
+document.getElementById('closeModal').addEventListener('click', closeModal);
+document.getElementById('closeExport').addEventListener('click', closeExport);
+
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+exportModal.addEventListener('click', e => { if (e.target === exportModal) closeExport(); });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeExport(); }
+  if (e.key === 'Enter' && !modal.hidden) {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT') { e.preventDefault(); saveEditor(); }
+  }
+});
+
+/* =========================================================
+   KHỞI ĐỘNG
+   ========================================================= */
+render();
+</script>
+</body>
+</html>
